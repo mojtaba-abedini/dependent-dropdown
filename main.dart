@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  int jens_id = 1;
   String? selectedOstanId;
   String? selectedShahrId;
   List<dynamic> ostan = [];
@@ -65,71 +65,77 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Directionality(
           textDirection: TextDirection.rtl,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 80,
-              ),
-              MyWidgets.dropDownWidget(
-                  context, "استان را انتخاب کنید", selectedOstanId, ostan,
-                      (onChangedVal) {
-                    setState(() {
-                      selectedOstanId = onChangedVal! ?? "";
-                      selectedShahrId = null;
-                      filterShahr = shahr
-                          .where((element) =>
-                      element['ostanId'].toString() ==
-                          selectedOstanId.toString())
-                          .toList();
-                      print(selectedShahrId);
-                    });
-                  }, (onValidateVal) {
-                if (onValidateVal == null) {
-                  return "استان را انتخاب کنید";
-                }
-                return null;
-              },
-                  borderFocusColor: Theme.of(context).primaryColor,
-                  borderColor: Theme.of(context).primaryColor,
-                  borderRadius: 10,
-                  optionValue: "id",
-                  optionLabel: "name"),
-              const SizedBox(
-                height: 30,
-              ),
-              MyWidgets.dropDownWidget(
-                  context, "شهر را انتخاب کنید", selectedShahrId, filterShahr,
-                      (onChangedVal) {
-                    setState(() {
-                      selectedShahrId = onChangedVal;
-                    });
-                  }, (onValidateVal) => null,
-                  borderFocusColor: Theme.of(context).primaryColor,
-                  borderColor: Theme.of(context).primaryColor,
-                  borderRadius: 10,
-                  optionValue: "id",
-                  optionLabel: "name"),
-              const SizedBox(
-                height: 80,
-              ),
-              const SizedBox(
-                height: 80,
-              ),
-              Text(
-                'آی دی استان: ${selectedOstanId}',
-                style: const TextStyle(fontSize: 24.0),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Text(
-                'آی دی شهر: ${selectedShahrId}',
-                style: const TextStyle(fontSize: 24.0),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-            ],
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width < 600
+                ? MediaQuery.of(context).size.width
+                : 600,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 80,
+                ),
+                MyWidgets.dropDownWidget(
+                    context, "استان را انتخاب کنید", selectedOstanId, ostan,
+                        (onChangedVal) {
+                      setState(() {
+                        selectedOstanId = onChangedVal! ?? "";
+                        selectedShahrId = null;
+                        filterShahr = shahr
+                            .where((element) =>
+                        element['ostanId'].toString() ==
+                            selectedOstanId.toString())
+                            .toList();
+                        print(selectedShahrId);
+                      });
+                    }, (onValidateVal) {
+                  if (onValidateVal == null) {
+                    return "استان را انتخاب کنید";
+                  }
+                  return null;
+                },
+                    borderFocusColor: Theme.of(context).primaryColor,
+                    borderColor: Theme.of(context).primaryColor,
+                    borderRadius: 10,
+                    optionValue: "id",
+                    optionLabel: "name"),
+                const SizedBox(
+                  height: 30,
+                ),
+
+                MyWidgets.dropDownWidget(
+                    context, "شهر را انتخاب کنید", selectedShahrId, filterShahr,
+                        (onChangedVal) {
+                      setState(() {
+                        selectedShahrId = onChangedVal;
+                      });
+                    }, (onValidateVal) => null,
+                    borderFocusColor: Theme.of(context).primaryColor,
+                    borderColor: Theme.of(context).primaryColor,
+                    borderRadius: 10,
+                    optionValue: "id",
+                    optionLabel: "name"),
+                const SizedBox(
+                  height: 80,
+                ),
+                const SizedBox(
+                  height: 80,
+                ),
+                Text(
+                  'آی دی استان: ${selectedOstanId}',
+                  style: const TextStyle(fontSize: 24.0),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  'آی دی شهر: ${selectedShahrId}',
+                  style: const TextStyle(fontSize: 24.0),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+              ],
+            ),
           ),
         ),
       ),
