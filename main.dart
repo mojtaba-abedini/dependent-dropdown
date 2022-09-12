@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int jens_id = 1;
+
   String? selectedOstanId;
   String? selectedShahrId;
   List<dynamic> ostan = [];
